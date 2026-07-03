@@ -78,6 +78,7 @@
         <a href="#forecast" data-nav-target="forecast">Forecast</a>
         <a href="#goals" data-nav-target="goals">Goals</a>
         <a href="#accounts" data-nav-target="accounts">Accounts</a>
+        <a href="#clientDashboard" data-nav-target="clientDashboard" class="advisor-only is-hidden">Clients</a>
         <a href="#messages" data-nav-target="messages">Messages</a>
         <a href="#advisor" data-nav-target="advisor">Advisor</a>
       </nav>
@@ -109,9 +110,76 @@
         </div>
         <div class="advisor-mini-grid">
           <span><strong>Rita Wen</strong> Goal behind risk: low</span>
-          <span><strong>Jon Patel</strong> Card pressure: high</span>
-          <span><strong>Amira Lee</strong> Mortgage renewal: 45 days</span>
+          <span><strong>Aidan Chen</strong> Card pressure: high</span>
+          <span><strong>Tiana Brooks</strong> Savings goal: on track</span>
         </div>
+      </section>
+
+      <section id="clientDashboard" class="client-dashboard advisor-only is-hidden">
+        <article class="panel wide">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">Advisor client dashboard</p>
+              <h2>Isabel can monitor client spending, goals, and detected risks.</h2>
+            </div>
+            <div class="dashboard-controls">
+              <label>
+                <span>Filter view</span>
+                <select id="advisorFilter" aria-label="Advisor spending filter">
+                  <option value="total">Total spending</option>
+                  <option value="essential">Essential spending</option>
+                  <option value="nonessential">Non-essential spending</option>
+                  <option value="risk">Risk level</option>
+                </select>
+              </label>
+              <label class="compare-toggle">
+                <input type="checkbox" id="compareClients" checked>
+                <span>Compare clients</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="client-dashboard-grid">
+            <div class="advisor-chart-card">
+              <div class="advisor-chart" id="advisorChart">
+                <div class="advisor-client-bar" data-client="Rita Wen" data-total="3270" data-essential="2750" data-nonessential="520" data-risk="42">
+                  <span class="bar-value">$3,270</span>
+                  <div class="advisor-bar-fill" style="height: 74%"></div>
+                  <strong>Rita</strong>
+                </div>
+                <div class="advisor-client-bar" data-client="Aidan Chen" data-total="3910" data-essential="2420" data-nonessential="1490" data-risk="86">
+                  <span class="bar-value">$3,910</span>
+                  <div class="advisor-bar-fill high-risk" style="height: 88%"></div>
+                  <strong>Aidan</strong>
+                </div>
+                <div class="advisor-client-bar" data-client="Tiana Brooks" data-total="2860" data-essential="2180" data-nonessential="680" data-risk="28">
+                  <span class="bar-value">$2,860</span>
+                  <div class="advisor-bar-fill on-track" style="height: 64%"></div>
+                  <strong>Tiana</strong>
+                </div>
+              </div>
+              <p id="advisorChartNote">Total spending compares each client’s expected monthly spending across connected CIBC accounts.</p>
+            </div>
+
+            <div class="detected-notes">
+              <div class="client-note warning">
+                <strong>Aidan Chen</strong>
+                <p>FutureView detected non-essential spending 31% above normal. Advisor outreach is recommended before the next credit card cycle closes.</p>
+                <span>Detected: overspending risk</span>
+              </div>
+              <div class="client-note">
+                <strong>Rita Wen</strong>
+                <p>Rita is still on track for her Montreal trip goal, but dining spend is reducing her monthly buffer.</p>
+                <span>Detected: goal pressure low</span>
+              </div>
+              <div class="client-note success">
+                <strong>Tiana Brooks</strong>
+                <p>Tiana’s savings deposits are consistent and her essential spending is stable compared with the last three months.</p>
+                <span>Detected: on track</span>
+              </div>
+            </div>
+          </div>
+        </article>
       </section>
 
       <section id="overview" class="hero-grid">
@@ -315,9 +383,19 @@
             <p class="eyebrow">Secure messages</p>
             <h2>Advisor conversation</h2>
             <div class="thread-card active">
-              <strong>Sarah Thompson</strong>
+              <strong>Isabel Martin</strong>
               <span>CIBC Financial Advisor</span>
               <em>Mortgage renewal and monthly budget</em>
+            </div>
+            <div class="thread-card">
+              <strong>Aidan Chen</strong>
+              <span>Client conversation</span>
+              <em>Credit card pressure and spending limits</em>
+            </div>
+            <div class="thread-card">
+              <strong>Tiana Brooks</strong>
+              <span>Client conversation</span>
+              <em>Savings goal check-in</em>
             </div>
             <div class="thread-card">
               <strong>FutureView Alerts</strong>
@@ -330,7 +408,7 @@
             <div class="conversation-header">
               <div>
                 <p class="eyebrow">Full conversation</p>
-                <h2 id="conversationTitle">Rita Wen and Sarah Thompson</h2>
+                <h2 id="conversationTitle">Rita Wen and Isabel Martin</h2>
               </div>
               <span class="secure-badge">Secure CIBC message</span>
             </div>
@@ -338,7 +416,7 @@
             <div class="conversation-log" id="conversationLog" aria-live="polite">
               <div class="message-row advisor-message">
                 <div class="message-bubble">
-                  <strong>Sarah Thompson</strong>
+                  <strong>Isabel Martin</strong>
                   <p>Hi Rita, FutureView noticed your dining spend is trending above your normal pattern. You are still on track for your Montreal trip, but the buffer is getting smaller.</p>
                   <span>Today, 9:12 AM</span>
                 </div>
@@ -352,7 +430,7 @@
               </div>
               <div class="message-row advisor-message">
                 <div class="message-bubble">
-                  <strong>Sarah Thompson</strong>
+                  <strong>Isabel Martin</strong>
                   <p>You can spend about $145 this weekend and still hit your goal. If you want more room, move $50 from restaurants to savings after your next paycheque.</p>
                   <span>Today, 9:24 AM</span>
                 </div>

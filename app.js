@@ -32,12 +32,12 @@ const roleContent = {
   },
   advisor: {
     eyebrow: "Advisor login",
-    title: "Welcome back, CIBC Advisor.",
+    title: "Welcome back, Isabel.",
     description: "Review client forecast signals, goal progress, and recommended outreach opportunities.",
     idLabel: "Advisor ID",
-    loginId: "advisor.demo",
+    loginId: "isabel.advisor",
     note: "Prototype mode: use the prefilled demo details to enter the advisor workspace.",
-    greeting: "Advisor workspace",
+    greeting: "Advisor workspace for Isabel.",
     subtext: "FutureView highlights clients who may benefit from proactive planning support."
   }
 };
@@ -74,9 +74,12 @@ document.getElementById("loginForm")?.addEventListener("submit", (event) => {
   document.getElementById("dashboardGreeting").textContent = content.greeting;
   document.getElementById("dashboardSubtext").textContent = content.subtext;
   document.getElementById("advisorModeBanner")?.classList.toggle("is-hidden", selectedRole !== "advisor");
+  document.querySelectorAll(".advisor-only").forEach((element) => {
+    element.classList.toggle("is-hidden", selectedRole !== "advisor");
+  });
   document.getElementById("conversationTitle").textContent = selectedRole === "advisor"
-    ? "Sarah Thompson and Rita Wen"
-    : "Rita Wen and Sarah Thompson";
+    ? "Isabel Martin and Rita Wen"
+    : "Rita Wen and Isabel Martin";
   document.getElementById("messageInput").placeholder = selectedRole === "advisor"
     ? "Write a message to Rita Wen..."
     : "Write a message to your advisor...";
@@ -86,6 +89,7 @@ document.getElementById("loginForm")?.addEventListener("submit", (event) => {
 document.getElementById("signOut")?.addEventListener("click", () => {
   document.getElementById("appShell")?.classList.add("is-hidden");
   document.getElementById("loginScreen")?.classList.remove("is-hidden");
+  document.querySelectorAll(".advisor-only").forEach((element) => element.classList.add("is-hidden"));
   document.body.classList.add("login-active");
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
@@ -130,7 +134,7 @@ document.getElementById("messageForm")?.addEventListener("submit", (event) => {
   bubble.className = "message-bubble";
 
   const sender = document.createElement("strong");
-  sender.textContent = selectedRole === "advisor" ? "Sarah Thompson" : "Rita Wen";
+  sender.textContent = selectedRole === "advisor" ? "Isabel Martin" : "Rita Wen";
 
   const body = document.createElement("p");
   body.textContent = text;
@@ -144,6 +148,63 @@ document.getElementById("messageForm")?.addEventListener("submit", (event) => {
   input.value = "";
   log.scrollTop = log.scrollHeight;
 });
+
+const advisorFilterLabels = {
+  total: {
+    key: "total",
+    note: "Total spending compares each client's expected monthly spending across connected CIBC accounts.",
+    prefix: "$"
+  },
+  essential: {
+    key: "essential",
+    note: "Essential spending zooms in on housing, groceries, transportation, utilities, and required payments.",
+    prefix: "$"
+  },
+  nonessential: {
+    key: "nonessential",
+    note: "Non-essential spending highlights flexible categories like dining, subscriptions, recreation, and travel.",
+    prefix: "$"
+  },
+  risk: {
+    key: "risk",
+    note: "Risk level compares detected overspending, goal pressure, and upcoming payment stress across clients.",
+    prefix: ""
+  }
+};
+
+function updateAdvisorChart() {
+  const filter = document.getElementById("advisorFilter")?.value || "total";
+  const compare = document.getElementById("compareClients")?.checked ?? true;
+  const chart = document.getElementById("advisorChart");
+  const note = document.getElementById("advisorChartNote");
+  const config = advisorFilterLabels[filter];
+  const bars = Array.from(document.querySelectorAll(".advisor-client-bar"));
+
+  if (!chart || !config) return;
+
+  const values = bars.map((bar) => Number(bar.dataset[config.key]));
+  const max = Math.max(...values, 1);
+
+  bars.forEach((bar) => {
+    const value = Number(bar.dataset[config.key]);
+    const fill = bar.querySelector(".advisor-bar-fill");
+    const label = bar.querySelector(".bar-value");
+    const height = Math.max(18, Math.round((value / max) * 88));
+
+    fill.style.height = `${height}%`;
+    label.textContent = filter === "risk" ? `${value}/100` : `$${value.toLocaleString()}`;
+    bar.classList.toggle("focus-client", bar.dataset.client === "Aidan Chen");
+  });
+
+  chart.classList.toggle("single-client", !compare);
+  if (note) {
+    note.textContent = compare ? config.note : `${config.note} Compare is off, so Isabel is zoomed in on Aidan Chen because FutureView detected the highest current risk.`;
+  }
+}
+
+document.getElementById("advisorFilter")?.addEventListener("change", updateAdvisorChart);
+document.getElementById("compareClients")?.addEventListener("change", updateAdvisorChart);
+updateAdvisorChart();
 
 document.getElementById("adjustGoal")?.addEventListener("click", () => {
   goalIndex = (goalIndex + 1) % goalStates.length;
