@@ -1026,6 +1026,17 @@ select {
   border: 1px solid var(--line);
 }
 
+.client-action-list {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+}
+
+.advisor-thread-list {
+  display: grid;
+  align-content: start;
+}
+
 .thread-card {
   display: grid;
   gap: 0.22rem;
@@ -1046,6 +1057,37 @@ select {
   color: var(--muted);
   font-style: normal;
   font-size: 0.88rem;
+}
+
+.support-option {
+  display: grid;
+  gap: 0.3rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  color: var(--ink);
+  text-align: left;
+  box-shadow: none;
+}
+
+.support-option.active,
+.support-option:hover {
+  border-color: #efb9c8;
+  box-shadow: inset 4px 0 0 var(--cibc-red);
+}
+
+.support-option strong,
+.support-option span {
+  display: block;
+}
+
+.support-option span {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.35;
 }
 
 .conversation-panel {

@@ -83,6 +83,8 @@ document.getElementById("loginForm")?.addEventListener("submit", (event) => {
   document.getElementById("messageInput").placeholder = selectedRole === "advisor"
     ? "Write a message to Rita Wen..."
     : "Write a message to your advisor...";
+  document.querySelector(".advisor-thread-list")?.classList.toggle("is-hidden", selectedRole !== "advisor");
+  document.querySelector(".client-action-list")?.classList.toggle("is-hidden", selectedRole === "advisor");
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
@@ -149,6 +151,20 @@ document.getElementById("messageForm")?.addEventListener("submit", (event) => {
   log.scrollTop = log.scrollHeight;
 });
 
+document.querySelectorAll("[data-message-template]").forEach((button) => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll("[data-message-template]").forEach((item) => {
+      item.classList.toggle("active", item === button);
+    });
+
+    const input = document.getElementById("messageInput");
+    if (input) {
+      input.value = button.dataset.messageTemplate;
+      input.focus();
+    }
+  });
+});
+
 const advisorFilterLabels = {
   total: {
     key: "total",
@@ -193,12 +209,12 @@ function updateAdvisorChart() {
 
     fill.style.height = `${height}%`;
     label.textContent = filter === "risk" ? `${value}/100` : `$${value.toLocaleString()}`;
-    bar.classList.toggle("focus-client", bar.dataset.client === "Aidan Chen");
+    bar.classList.toggle("focus-client", bar.dataset.client === "Aidan Huynh");
   });
 
   chart.classList.toggle("single-client", !compare);
   if (note) {
-    note.textContent = compare ? config.note : `${config.note} Compare is off, so Isabel is zoomed in on Aidan Chen because FutureView detected the highest current risk.`;
+    note.textContent = compare ? config.note : `${config.note} Compare is off, so Isabel is zoomed in on Aidan Huynh because FutureView detected the highest current risk.`;
   }
 }
 
