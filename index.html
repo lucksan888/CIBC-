@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CIBC FutureView Prototype</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
   <section class="login-screen" id="loginScreen">
     <div class="login-brand">
-      <img src="cibc-logo-photo.png?v=photo1" alt="CIBC">
+      <img src="./cibc-logo-photo.png" alt="CIBC">
       <div>
         <strong>CIBC FutureView</strong>
         <span>Predictive financial guidance prototype</span>
@@ -67,18 +67,18 @@
   <div class="app-shell is-hidden" id="appShell">
     <aside class="sidebar" aria-label="Primary">
       <div class="brand">
-        <img class="brand-logo" src="cibc-logo-photo.png?v=photo1" alt="CIBC">
+        <img class="brand-logo" src="./cibc-logo-photo.png" alt="CIBC">
         <div>
           <strong>CIBC</strong>
           <span>FutureView</span>
         </div>
       </div>
       <nav class="nav">
-        <a href="#overview" class="active">Overview</a>
-        <a href="#forecast">Forecast</a>
-        <a href="#goals">Goals</a>
-        <a href="#accounts">Accounts</a>
-        <a href="#advisor">Advisor</a>
+        <a href="#overview" class="active" data-nav-target="overview">Overview</a>
+        <a href="#forecast" data-nav-target="forecast">Forecast</a>
+        <a href="#goals" data-nav-target="goals">Goals</a>
+        <a href="#accounts" data-nav-target="accounts">Accounts</a>
+        <a href="#advisor" data-nav-target="advisor">Advisor</a>
       </nav>
       <button class="sign-out" type="button" id="signOut">Sign out</button>
       <div class="privacy-card">
@@ -324,6 +324,6 @@
       </section>
     </main>
   </div>
-  <script src="app.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>

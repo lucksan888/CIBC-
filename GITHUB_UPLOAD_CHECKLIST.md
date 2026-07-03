@@ -48,5 +48,16 @@ https://YOUR-GITHUB-USERNAME.github.io/cibc-futureview-prototype/
 - Client login opens Rita Wen's dashboard.
 - Advisor login opens the advisor workspace.
 - The CIBC logo image loads correctly.
+- The file `cibc-logo-photo.png` is uploaded in the same folder as `index.html`.
 - The spending forecast, savings goal, accounts, and advisor sections are visible.
 - The prototype note says CIBC does not offer prediction-market trading inside the app.
+
+## If The Logo Does Not Show On GitHub Pages
+
+Make sure GitHub contains this exact file name:
+
+```text
+cibc-logo-photo.png
+```
+
+The name is case-sensitive. For example, `CIBC-logo-photo.png` or `cibc-logo-photo.PNG` may not load correctly on GitHub Pages.
