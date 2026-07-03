@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CIBC FutureView Prototype</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="login-screen" id="loginScreen">
+    <div class="login-brand">
+      <img src="cibc-logo-photo.png?v=photo1" alt="CIBC">
+      <div>
+        <strong>CIBC FutureView</strong>
+        <span>Predictive financial guidance prototype</span>
+      </div>
+    </div>
+
+    <div class="login-layout">
+      <div class="login-copy">
+        <p class="eyebrow">Secure access</p>
+        <h1>Personalized planning for clients and advisors.</h1>
+        <p>FutureView gives clients proactive spending guidance, goal tracking, and account insights while giving advisors a clearer view of who may need support before financial stress happens.</p>
+        <div class="login-points">
+          <span>Forecast cash flow and safe spending limits.</span>
+          <span>Track savings goals across CIBC accounts.</span>
+          <span>Surface advisor-ready planning opportunities.</span>
+        </div>
+      </div>
+
+      <form class="login-card" id="loginForm">
+        <div class="role-tabs" role="tablist" aria-label="Login type">
+          <button class="role-tab active" type="button" data-role="client">Client</button>
+          <button class="role-tab" type="button" data-role="advisor">Advisor</button>
+        </div>
+
+        <div>
+          <p class="eyebrow" id="loginEyebrow">Client login</p>
+          <h2 id="loginTitle">Welcome back, Rita Wen.</h2>
+          <p class="subtle" id="loginDescription">Access your personalized spending forecast, savings goals, and account guidance.</p>
+        </div>
+
+        <label>
+          <span id="idLabel">Card number or username</span>
+          <input id="loginId" type="text" value="rita.wen" autocomplete="username">
+        </label>
+
+        <label>
+          <span>Password</span>
+          <input type="password" value="futureview" autocomplete="current-password">
+        </label>
+
+        <div class="login-options">
+          <label class="check-row">
+            <input type="checkbox" checked>
+            <span>Remember this device</span>
+          </label>
+          <a href="#">Need help?</a>
+        </div>
+
+        <button class="login-submit" type="submit">Sign in to FutureView</button>
+        <p class="login-note" id="loginNote">Prototype mode: use the prefilled demo details to enter the client dashboard.</p>
+      </form>
+    </div>
+  </section>
+
+  <div class="app-shell is-hidden" id="appShell">
+    <aside class="sidebar" aria-label="Primary">
+      <div class="brand">
+        <img class="brand-logo" src="cibc-logo-photo.png?v=photo1" alt="CIBC">
+        <div>
+          <strong>CIBC</strong>
+          <span>FutureView</span>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#overview" class="active">Overview</a>
+        <a href="#forecast">Forecast</a>
+        <a href="#goals">Goals</a>
+        <a href="#accounts">Accounts</a>
+        <a href="#advisor">Advisor</a>
+      </nav>
+      <button class="sign-out" type="button" id="signOut">Sign out</button>
+      <div class="privacy-card">
+        <span class="privacy-dot"></span>
+        <p>Prediction signals are translated into planning guidance. Customers never trade event contracts here.</p>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Personalized banking assistant</p>
+          <h1 id="dashboardGreeting">Good evening, Rita Wen.</h1>
+          <p class="subtle" id="dashboardSubtext">FutureView is watching your cash flow, savings goals, card spending, and market-sensitive risks.</p>
+        </div>
+        <div class="profile-pill">
+          <span>July forecast</span>
+          <strong>On track</strong>
+        </div>
+      </header>
+
+      <section class="advisor-mode-banner is-hidden" id="advisorModeBanner">
+        <div>
+          <p class="eyebrow">Advisor workspace</p>
+          <h2>Three clients may need proactive support this week.</h2>
+          <p>Advisor mode summarizes client risk signals, goal progress, and recommended outreach while keeping prediction-market activity out of the customer experience.</p>
+        </div>
+        <div class="advisor-mini-grid">
+          <span><strong>Rita Wen</strong> Goal behind risk: low</span>
+          <span><strong>Jon Patel</strong> Card pressure: high</span>
+          <span><strong>Amira Lee</strong> Mortgage renewal: 45 days</span>
+        </div>
+      </section>
+
+      <section id="overview" class="hero-grid">
+        <article class="hero-panel">
+          <div class="panel-heading">
+            <span class="icon-circle">↗</span>
+            <div>
+              <p class="eyebrow">This month</p>
+              <h2>You can safely spend $1,240 more.</h2>
+            </div>
+          </div>
+          <p class="hero-copy">Based on your expected income, essential bills, credit card balance, and savings target, FutureView recommends keeping everyday spending below $62 per day for the rest of July.</p>
+          <div class="meter" aria-label="Safe spending meter">
+            <span style="width: 64%"></span>
+          </div>
+          <div class="hero-stats">
+            <div>
+              <span>Income expected</span>
+              <strong>$4,850</strong>
+            </div>
+            <div>
+              <span>Bills forecast</span>
+              <strong>$2,940</strong>
+            </div>
+            <div>
+              <span>Goal deposit</span>
+              <strong>$450</strong>
+            </div>
+          </div>
+        </article>
+
+        <article class="insight-panel">
+          <p class="eyebrow">Forecast insight</p>
+          <h3>Rate-sensitive spending may feel tighter next month.</h3>
+          <p>External forecast signals suggest borrowing costs may remain elevated. FutureView does not show prediction-market trading, but it uses those signals to prepare your budget for higher card interest and mortgage renewal pressure.</p>
+          <button class="text-button" type="button" data-scroll-target="advisor">View preparation plan</button>
+        </article>
+      </section>
+
+      <section id="forecast" class="section-grid">
+        <article class="panel wide">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">Spending forecast</p>
+              <h2>FutureView predicts where your money will go.</h2>
+            </div>
+            <select aria-label="Forecast period">
+              <option>Next 30 days</option>
+              <option>Next 60 days</option>
+              <option>Next 90 days</option>
+            </select>
+          </div>
+
+          <div class="forecast-layout">
+            <div class="chart-card">
+              <div class="bar-chart" aria-label="Spending category chart">
+                <div class="bar housing"><span>$1,820</span></div>
+                <div class="bar food"><span>$620</span></div>
+                <div class="bar transport"><span>$310</span></div>
+                <div class="bar fun"><span>$520</span></div>
+                <div class="bar travel"><span>$260</span></div>
+              </div>
+              <div class="chart-labels">
+                <span>Housing</span>
+                <span>Food</span>
+                <span>Transit</span>
+                <span>Fun</span>
+                <span>Travel</span>
+              </div>
+            </div>
+            <div class="recommendations">
+              <div class="signal-card">
+                <span>Behind the scenes signal</span>
+                <strong>Rate pressure: elevated</strong>
+                <p>CIBC translates external forecast data into planning advice instead of offering event-market trading.</p>
+              </div>
+              <div class="rec-item warning">
+                <strong>Dining is trending 18% above normal.</strong>
+                <span>Move $95 from restaurants to your emergency fund to stay on pace.</span>
+              </div>
+              <div class="rec-item">
+                <strong>Your rent and transit are stable.</strong>
+                <span>These essentials are unlikely to affect your July goal.</span>
+              </div>
+              <div class="rec-item">
+                <strong>Vacation spending is forecasted to rise.</strong>
+                <span>FutureView recommends setting a $280 weekend limit before booking.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <p class="eyebrow">Credit card guardrail</p>
+          <h2>Spend limit before goals are at risk</h2>
+          <div class="big-number">$385</div>
+          <p class="subtle">If your credit card spending goes above this amount before your next paycheque, your savings goal may fall behind by 9 days.</p>
+          <div class="mini-list">
+            <span>Current card balance <strong>$1,140</strong></span>
+            <span>Forecast interest risk <strong>Medium</strong></span>
+            <span>Suggested payment <strong>$300</strong></span>
+          </div>
+        </article>
+      </section>
+
+      <section id="goals" class="section-grid">
+        <article class="panel">
+          <p class="eyebrow">Savings goal</p>
+          <h2>Montreal trip fund</h2>
+          <div class="goal-ring" aria-label="Goal progress">
+            <span id="goalPercent">72%</span>
+          </div>
+          <p id="goalText">You are on track to reach $2,000 by August 30 if you save $112 per week.</p>
+          <button type="button" id="adjustGoal">Adjust weekly amount</button>
+        </article>
+
+        <article class="panel wide">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">Goal plan</p>
+              <h2>Your next best actions are ranked by impact.</h2>
+            </div>
+          </div>
+          <div class="action-list">
+            <div class="action-row">
+              <span class="rank">1</span>
+              <div>
+                <strong>Lower recreation spending by $80 this month.</strong>
+                <p>This keeps your trip goal on schedule without affecting rent, groceries, or transit.</p>
+              </div>
+              <span class="impact">High</span>
+            </div>
+            <div class="action-row">
+              <span class="rank">2</span>
+              <div>
+                <strong>Move payday savings automatically.</strong>
+                <p>FutureView recommends transferring $225 every second Friday.</p>
+              </div>
+              <span class="impact">High</span>
+            </div>
+            <div class="action-row">
+              <span class="rank">3</span>
+              <div>
+                <strong>Delay one subscription renewal.</strong>
+                <p>This creates an extra $19 buffer for unexpected spending.</p>
+              </div>
+              <span class="impact">Low</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section id="accounts" class="section-grid">
+        <article class="panel wide">
+          <p class="eyebrow">All CIBC accounts</p>
+          <h2>One view across chequing, savings, credit, and investments.</h2>
+          <div class="account-table">
+            <div class="table-row header-row">
+              <span>Account</span>
+              <span>Balance</span>
+              <span>FutureView status</span>
+            </div>
+            <div class="table-row">
+              <span>Smart Plus Chequing</span>
+              <strong>$2,780</strong>
+              <em>Enough for 22 days of planned spending.</em>
+            </div>
+            <div class="table-row">
+              <span>Momentum Savings</span>
+              <strong>$1,440</strong>
+              <em>Trip goal is on track.</em>
+            </div>
+            <div class="table-row">
+              <span>Dividend Visa</span>
+              <strong>-$1,140</strong>
+              <em>Payment recommended before July 12.</em>
+            </div>
+            <div class="table-row">
+              <span>TFSA Balanced Portfolio</span>
+              <strong>$8,920</strong>
+              <em>Risk exposure is aligned with your profile.</em>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <p class="eyebrow">Investment transparency</p>
+          <h2>What your CIBC fund owns</h2>
+          <p>Your TFSA Balanced Portfolio added more short-term bonds and reduced long-duration bond exposure to manage rate uncertainty.</p>
+          <div class="holding-list">
+            <span><strong>Added</strong> Canadian short-term bonds</span>
+            <span><strong>Reduced</strong> long-duration bonds</span>
+            <span><strong>Maintained</strong> broad Canadian equity</span>
+          </div>
+        </article>
+      </section>
+
+      <section id="advisor" class="advisor-section">
+        <article class="advisor-card">
+          <div>
+            <p class="eyebrow">AI financial advising function</p>
+            <h2>FutureView gives advice without asking customers to speculate.</h2>
+            <p>The system uses customer account data, long-term spending patterns, and external forecast signals to personalize guidance. CIBC stays away from prediction-market participation and focuses on budgeting, goal tracking, spending guardrails, and advisor-supported planning.</p>
+          </div>
+          <div class="advisor-chat" aria-label="Advisor recommendations">
+            <div class="chat-bubble assistant">You can reach your trip goal and pay down your card if you cap non-essential spending at $380 this month.</div>
+            <div class="chat-bubble user">What should I change first?</div>
+            <div class="chat-bubble assistant">Start with restaurants and subscriptions. That gives you the most savings without affecting essentials.</div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
