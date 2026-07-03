@@ -601,7 +601,7 @@ select {
 
 .forecast-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 310px;
+  grid-template-columns: 1fr;
   gap: 1rem;
 }
 
@@ -614,11 +614,12 @@ select {
 }
 
 .bar-chart {
-  height: 245px;
+  height: 220px;
   display: grid;
   grid-template-columns: repeat(5, minmax(48px, 1fr));
   align-items: end;
   gap: 0.65rem;
+  padding-top: 1.3rem;
 }
 
 .bar {
@@ -680,6 +681,14 @@ select {
 .action-list {
   display: grid;
   gap: 0.72rem;
+}
+
+.recommendations {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.signal-card {
+  grid-column: 1 / -1;
 }
 
 .rec-item,
@@ -846,6 +855,165 @@ select {
   margin-bottom: 2rem;
 }
 
+.messages-section {
+  margin-bottom: 1rem;
+}
+
+.messages-panel {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.42fr) minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  box-shadow: var(--shadow);
+}
+
+.messages-sidebar {
+  padding: 1rem;
+  border-radius: 8px;
+  background: #fbf4f6;
+  border: 1px solid var(--line);
+}
+
+.thread-card {
+  display: grid;
+  gap: 0.22rem;
+  margin-top: 0.75rem;
+  padding: 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+}
+
+.thread-card.active {
+  border-color: #efb9c8;
+  box-shadow: inset 4px 0 0 var(--cibc-red);
+}
+
+.thread-card span,
+.thread-card em {
+  color: var(--muted);
+  font-style: normal;
+  font-size: 0.88rem;
+}
+
+.conversation-panel {
+  min-width: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.conversation-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.4rem 0.25rem 0;
+}
+
+.secure-badge {
+  flex: 0 0 auto;
+  padding: 0.42rem 0.65rem;
+  border-radius: 999px;
+  background: var(--mint);
+  color: #1f6f5d;
+  font-weight: 850;
+  font-size: 0.82rem;
+}
+
+.conversation-log {
+  max-height: 470px;
+  overflow: auto;
+  display: grid;
+  align-content: start;
+  gap: 0.85rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fdfafa;
+}
+
+.message-row {
+  display: flex;
+}
+
+.message-row.client-message {
+  justify-content: flex-end;
+}
+
+.message-bubble {
+  width: min(560px, 88%);
+  padding: 0.9rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: white;
+}
+
+.client-message .message-bubble {
+  color: white;
+  background: var(--cibc-red);
+  border-color: var(--cibc-red);
+}
+
+.message-bubble strong,
+.message-bubble span {
+  display: block;
+}
+
+.message-bubble p {
+  margin: 0.35rem 0;
+  line-height: 1.45;
+}
+
+.message-bubble span {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.client-message .message-bubble span {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.message-compose {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.message-compose label {
+  color: #3c3338;
+  font-weight: 850;
+}
+
+.compose-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.65rem;
+  align-items: stretch;
+}
+
+.compose-row textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 70px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.75rem;
+  font: inherit;
+}
+
+.compose-row textarea:focus {
+  outline: 3px solid rgba(200, 16, 46, 0.16);
+  border-color: var(--cibc-red);
+}
+
+#messageHint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
 .advisor-card {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.85fr);
@@ -920,7 +1088,12 @@ select {
   .section-grid,
   .advisor-card,
   .forecast-layout,
-  .advisor-mode-banner {
+  .advisor-mode-banner,
+  .messages-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .recommendations {
     grid-template-columns: 1fr;
   }
 }
@@ -970,5 +1143,18 @@ select {
   .impact {
     grid-column: 2;
     justify-self: start;
+  }
+
+  .conversation-header,
+  .compose-row {
+    display: grid;
+  }
+
+  .secure-badge {
+    justify-self: start;
+  }
+
+  .message-bubble {
+    width: 100%;
   }
 }

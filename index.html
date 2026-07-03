@@ -78,6 +78,7 @@
         <a href="#forecast" data-nav-target="forecast">Forecast</a>
         <a href="#goals" data-nav-target="goals">Goals</a>
         <a href="#accounts" data-nav-target="accounts">Accounts</a>
+        <a href="#messages" data-nav-target="messages">Messages</a>
         <a href="#advisor" data-nav-target="advisor">Advisor</a>
       </nav>
       <button class="sign-out" type="button" id="signOut">Sign out</button>
@@ -304,6 +305,68 @@
             <span><strong>Added</strong> Canadian short-term bonds</span>
             <span><strong>Reduced</strong> long-duration bonds</span>
             <span><strong>Maintained</strong> broad Canadian equity</span>
+          </div>
+        </article>
+      </section>
+
+      <section id="messages" class="messages-section">
+        <article class="messages-panel">
+          <div class="messages-sidebar">
+            <p class="eyebrow">Secure messages</p>
+            <h2>Advisor conversation</h2>
+            <div class="thread-card active">
+              <strong>Sarah Thompson</strong>
+              <span>CIBC Financial Advisor</span>
+              <em>Mortgage renewal and monthly budget</em>
+            </div>
+            <div class="thread-card">
+              <strong>FutureView Alerts</strong>
+              <span>Automated guidance</span>
+              <em>Dining trend and savings goal update</em>
+            </div>
+          </div>
+
+          <div class="conversation-panel">
+            <div class="conversation-header">
+              <div>
+                <p class="eyebrow">Full conversation</p>
+                <h2 id="conversationTitle">Rita Wen and Sarah Thompson</h2>
+              </div>
+              <span class="secure-badge">Secure CIBC message</span>
+            </div>
+
+            <div class="conversation-log" id="conversationLog" aria-live="polite">
+              <div class="message-row advisor-message">
+                <div class="message-bubble">
+                  <strong>Sarah Thompson</strong>
+                  <p>Hi Rita, FutureView noticed your dining spend is trending above your normal pattern. You are still on track for your Montreal trip, but the buffer is getting smaller.</p>
+                  <span>Today, 9:12 AM</span>
+                </div>
+              </div>
+              <div class="message-row client-message">
+                <div class="message-bubble">
+                  <strong>Rita Wen</strong>
+                  <p>Thanks for the heads up. How much can I spend this weekend without falling behind?</p>
+                  <span>Today, 9:18 AM</span>
+                </div>
+              </div>
+              <div class="message-row advisor-message">
+                <div class="message-bubble">
+                  <strong>Sarah Thompson</strong>
+                  <p>You can spend about $145 this weekend and still hit your goal. If you want more room, move $50 from restaurants to savings after your next paycheque.</p>
+                  <span>Today, 9:24 AM</span>
+                </div>
+              </div>
+            </div>
+
+            <form class="message-compose" id="messageForm">
+              <label for="messageInput">Message</label>
+              <div class="compose-row">
+                <textarea id="messageInput" rows="3" placeholder="Write a message to your advisor..."></textarea>
+                <button type="submit">Send</button>
+              </div>
+              <p id="messageHint">Prototype mode: messages appear in this conversation only.</p>
+            </form>
           </div>
         </article>
       </section>

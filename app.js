@@ -74,6 +74,12 @@ document.getElementById("loginForm")?.addEventListener("submit", (event) => {
   document.getElementById("dashboardGreeting").textContent = content.greeting;
   document.getElementById("dashboardSubtext").textContent = content.subtext;
   document.getElementById("advisorModeBanner")?.classList.toggle("is-hidden", selectedRole !== "advisor");
+  document.getElementById("conversationTitle").textContent = selectedRole === "advisor"
+    ? "Sarah Thompson and Rita Wen"
+    : "Rita Wen and Sarah Thompson";
+  document.getElementById("messageInput").placeholder = selectedRole === "advisor"
+    ? "Write a message to Rita Wen..."
+    : "Write a message to your advisor...";
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
@@ -107,6 +113,36 @@ document.querySelectorAll("[data-scroll-target]").forEach((button) => {
     card?.classList.add("highlight");
     window.setTimeout(() => card?.classList.remove("highlight"), 1400);
   });
+});
+
+document.getElementById("messageForm")?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const input = document.getElementById("messageInput");
+  const log = document.getElementById("conversationLog");
+  const text = input.value.trim();
+
+  if (!text || !log) return;
+
+  const row = document.createElement("div");
+  row.className = selectedRole === "advisor" ? "message-row advisor-message" : "message-row client-message";
+
+  const bubble = document.createElement("div");
+  bubble.className = "message-bubble";
+
+  const sender = document.createElement("strong");
+  sender.textContent = selectedRole === "advisor" ? "Sarah Thompson" : "Rita Wen";
+
+  const body = document.createElement("p");
+  body.textContent = text;
+
+  const timestamp = document.createElement("span");
+  timestamp.textContent = "Just now";
+
+  bubble.append(sender, body, timestamp);
+  row.append(bubble);
+  log.append(row);
+  input.value = "";
+  log.scrollTop = log.scrollHeight;
 });
 
 document.getElementById("adjustGoal")?.addEventListener("click", () => {
