@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CIBC FutureView Prototype</title>
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./styles.css?v=goal-lock5">
 </head>
 <body>
   <section class="login-screen" id="loginScreen">
@@ -120,7 +120,7 @@
           <div class="panel-title">
             <div>
               <p class="eyebrow">Advisor client dashboard</p>
-              <h2>Isabel can monitor client spending, goals, and detected risks.</h2>
+              <h2>Isabel Pogue can monitor client spending, goals, and detected risks.</h2>
             </div>
             <div class="dashboard-controls">
               <label>
@@ -209,6 +209,11 @@
               <strong>$450</strong>
             </div>
           </div>
+          <div class="client-quick-actions">
+            <button type="button" data-client-action="alert">Set spending alert</button>
+            <button type="button" data-client-action="advisor">Ask advisor</button>
+            <button type="button" data-client-action="plan">Save monthly plan</button>
+          </div>
         </article>
 
         <article class="insight-panel">
@@ -293,7 +298,24 @@
             <span id="goalPercent">72%</span>
           </div>
           <p id="goalText">You are on track to reach $2,000 by August 30 if you save $112 per week.</p>
-          <button type="button" id="adjustGoal">Adjust weekly amount</button>
+          <div class="goal-suggestions" aria-label="Savings recommendations">
+            <button type="button" class="goal-suggestion active" data-goal-action="100">
+              <strong>Save $100 this week</strong>
+              <span>Moves your goal to 76% complete.</span>
+            </button>
+            <button type="button" class="goal-suggestion" data-goal-action="dining">
+              <strong>Skip one dining expense</strong>
+              <span>Add $45 from restaurants to the trip fund.</span>
+            </button>
+            <button type="button" class="goal-suggestion" data-goal-action="payday">
+              <strong>Auto-save on payday</strong>
+              <span>Transfer $225 every second Friday.</span>
+            </button>
+            <button type="button" class="goal-suggestion" data-goal-action="weekend">
+              <strong>Set a weekend cap</strong>
+              <span>Keep recreation spending under $140.</span>
+            </button>
+          </div>
         </article>
 
         <article class="panel wide">
@@ -304,7 +326,7 @@
             </div>
           </div>
           <div class="action-list">
-            <div class="action-row">
+            <div class="action-row" data-action-detail="recreation" role="button" tabindex="0">
               <span class="rank">1</span>
               <div>
                 <strong>Lower recreation spending by $80 this month.</strong>
@@ -312,7 +334,7 @@
               </div>
               <span class="impact">High</span>
             </div>
-            <div class="action-row">
+            <div class="action-row" data-action-detail="payday" role="button" tabindex="0">
               <span class="rank">2</span>
               <div>
                 <strong>Move payday savings automatically.</strong>
@@ -320,7 +342,7 @@
               </div>
               <span class="impact">High</span>
             </div>
-            <div class="action-row">
+            <div class="action-row" data-action-detail="subscription" role="button" tabindex="0">
               <span class="rank">3</span>
               <div>
                 <strong>Delay one subscription renewal.</strong>
@@ -332,47 +354,60 @@
         </article>
       </section>
 
-      <section id="accounts" class="section-grid">
+      <section id="accounts" class="accounts-section">
         <article class="panel wide">
           <p class="eyebrow">All CIBC accounts</p>
           <h2>One view across chequing, savings, credit, and investments.</h2>
           <div class="account-table">
-            <div class="table-row header-row">
-              <span>Account</span>
-              <span>Balance</span>
-              <span>FutureView status</span>
+            <div class="account-group">
+              <div class="account-group-header">
+                <span>Deposit Accounts (2)</span>
+              </div>
+              <div class="table-row account-row active" data-account="chequing" role="button" tabindex="0">
+                <span>Smart Plus Chequing<small>Daily banking account</small></span>
+                <strong>$2,780</strong>
+                <em>Enough for 22 days. <b>View details</b></em>
+              </div>
+              <div class="table-row account-row" data-account="savings" role="button" tabindex="0">
+                <span>Momentum Savings<small>Montreal trip fund</small></span>
+                <strong>$1,440</strong>
+                <em>Trip goal on track. <b>View details</b></em>
+              </div>
+              <div class="account-total">
+                <span>Total CAD</span>
+                <strong>$4,220</strong>
+              </div>
             </div>
-            <div class="table-row">
-              <span>Smart Plus Chequing</span>
-              <strong>$2,780</strong>
-              <em>Enough for 22 days of planned spending.</em>
-            </div>
-            <div class="table-row">
-              <span>Momentum Savings</span>
-              <strong>$1,440</strong>
-              <em>Trip goal is on track.</em>
-            </div>
-            <div class="table-row">
-              <span>Dividend Visa</span>
-              <strong>-$1,140</strong>
-              <em>Payment recommended before July 12.</em>
-            </div>
-            <div class="table-row">
-              <span>TFSA Balanced Portfolio</span>
-              <strong>$8,920</strong>
-              <em>Risk exposure is aligned with your profile.</em>
-            </div>
-          </div>
-        </article>
 
-        <article class="panel">
-          <p class="eyebrow">Investment transparency</p>
-          <h2>What your CIBC fund owns</h2>
-          <p>Your TFSA Balanced Portfolio added more short-term bonds and reduced long-duration bond exposure to manage rate uncertainty.</p>
-          <div class="holding-list">
-            <span><strong>Added</strong> Canadian short-term bonds</span>
-            <span><strong>Reduced</strong> long-duration bonds</span>
-            <span><strong>Maintained</strong> broad Canadian equity</span>
+            <div class="account-group credit-group">
+              <div class="account-group-header">
+                <span>Credit Accounts (1)</span>
+              </div>
+              <div class="table-row account-row" data-account="visa" role="button" tabindex="0">
+                <span>Dividend Visa<small>**** 1209</small></span>
+                <strong>-$1,140</strong>
+                <em>Payment due July 12. <b>View details</b></em>
+              </div>
+              <div class="account-total">
+                <span>Total CAD</span>
+                <strong>-$1,140</strong>
+              </div>
+            </div>
+
+            <div class="account-group investment-group">
+              <div class="account-group-header">
+                <span>Investment Accounts (1)</span>
+              </div>
+              <div class="table-row account-row" data-account="tfsa" role="button" tabindex="0">
+                <span>TFSA Balanced Portfolio<small>Moderate risk</small></span>
+                <strong>$8,920</strong>
+                <em>Aligned with profile. <b>View details</b></em>
+              </div>
+              <div class="account-total">
+                <span>Total CAD</span>
+                <strong>$8,920</strong>
+              </div>
+            </div>
           </div>
         </article>
       </section>
@@ -383,8 +418,8 @@
             <p class="eyebrow">Secure messages</p>
             <h2>Advisor conversation</h2>
             <div class="thread-card active">
-              <strong>Isabel Martin</strong>
-              <span>CIBC Financial Advisor</span>
+              <strong>Rita Wen</strong>
+              <span>Client conversation</span>
               <em>Mortgage renewal and monthly budget</em>
             </div>
             <div class="thread-card">
@@ -409,7 +444,7 @@
             <h2>What would you like to do?</h2>
             <button class="support-option active" type="button" data-message-template="Hi Isabel, I would like to book a call to review my current spending forecast and savings goal.">
               <strong>Book a call or meeting</strong>
-              <span>Schedule time with Isabel to review your plan.</span>
+              <span>Schedule time with Isabel Pogue to review your plan.</span>
             </button>
             <button class="support-option" type="button" data-message-template="Hi Isabel, can you explain what investment options could fit my current savings goal and risk profile?">
               <strong>Ask about investment options</strong>
@@ -429,7 +464,7 @@
             <div class="conversation-header">
               <div>
                 <p class="eyebrow">Full conversation</p>
-                <h2 id="conversationTitle">Rita Wen and Isabel Martin</h2>
+                <h2 id="conversationTitle">Rita Wen and Isabel Pogue</h2>
               </div>
               <span class="secure-badge">Secure CIBC message</span>
             </div>
@@ -437,7 +472,7 @@
             <div class="conversation-log" id="conversationLog" aria-live="polite">
               <div class="message-row advisor-message">
                 <div class="message-bubble">
-                  <strong>Isabel Martin</strong>
+                  <strong>Isabel Pogue</strong>
                   <p>Hi Rita, FutureView noticed your dining spend is trending above your normal pattern. You are still on track for your Montreal trip, but the buffer is getting smaller.</p>
                   <span>Today, 9:12 AM</span>
                 </div>
@@ -451,7 +486,7 @@
               </div>
               <div class="message-row advisor-message">
                 <div class="message-bubble">
-                  <strong>Isabel Martin</strong>
+                  <strong>Isabel Pogue</strong>
                   <p>You can spend about $145 this weekend and still hit your goal. If you want more room, move $50 from restaurants to savings after your next paycheque.</p>
                   <span>Today, 9:24 AM</span>
                 </div>
@@ -486,6 +521,27 @@
       </section>
     </main>
   </div>
-  <script src="./app.js"></script>
+
+  <div class="account-modal is-hidden" id="accountModal" aria-hidden="true">
+    <div class="account-modal-card" role="dialog" aria-modal="true" aria-labelledby="modalAccountTitle">
+      <button class="modal-close" type="button" id="closeAccountModal" aria-label="Close account details">×</button>
+      <p class="eyebrow" id="modalAccountEyebrow">Account detail</p>
+      <h2 id="modalAccountTitle">Account breakdown</h2>
+      <p class="subtle" id="modalAccountSummary">Select an account to see a detailed breakdown.</p>
+      <div class="account-detail-list" id="modalAccountList"></div>
+    </div>
+  </div>
+  <div class="account-modal is-hidden" id="actionModal" aria-hidden="true">
+    <div class="account-modal-card action-modal-card" role="dialog" aria-modal="true" aria-labelledby="actionModalTitle">
+      <button class="modal-close" type="button" id="closeActionModal" aria-label="Close action details">×</button>
+      <p class="eyebrow">Recommendation detail</p>
+      <h2 id="actionModalTitle">Why FutureView recommended this</h2>
+      <p class="subtle" id="actionModalSummary">FutureView explains the signal behind this recommendation.</p>
+      <div class="action-detail-grid" id="actionModalList"></div>
+      <button class="lock-decision-button is-hidden" type="button" id="lockDecisionButton">Apply / lock in decision</button>
+    </div>
+  </div>
+  <div class="toast is-hidden" id="toast" role="status" aria-live="polite"></div>
+  <script src="./app.js?v=goal-lock5"></script>
 </body>
 </html>
