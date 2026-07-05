@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CIBC FutureView Prototype</title>
-  <link rel="stylesheet" href="./styles.css?v=goal-lock5">
+  <link rel="stylesheet" href="./styles.css?v=final-polish23">
 </head>
 <body>
   <section class="login-screen" id="loginScreen">
@@ -76,6 +76,7 @@
       <nav class="nav">
         <a href="#overview" class="active" data-nav-target="overview">Overview</a>
         <a href="#forecast" data-nav-target="forecast">Forecast</a>
+        <a href="#marketSignals" data-nav-target="marketSignals">Signals</a>
         <a href="#goals" data-nav-target="goals">Goals</a>
         <a href="#accounts" data-nav-target="accounts">Accounts</a>
         <a href="#clientDashboard" data-nav-target="clientDashboard" class="advisor-only is-hidden">Clients</a>
@@ -85,7 +86,7 @@
       <button class="sign-out" type="button" id="signOut">Sign out</button>
       <div class="privacy-card">
         <span class="privacy-dot"></span>
-        <p>Prediction signals are translated into planning guidance. Customers never trade event contracts here.</p>
+        <p>Demo data only. Prediction signals become planning guidance, not trading or financial advice.</p>
       </div>
     </aside>
 
@@ -97,8 +98,8 @@
           <p class="subtle" id="dashboardSubtext">FutureView is watching your cash flow, savings goals, card spending, and market-sensitive risks.</p>
         </div>
         <div class="profile-pill">
-          <span>July forecast</span>
-          <strong>On track</strong>
+          <span id="profilePillLabel">July forecast</span>
+          <strong id="profilePillValue">On track</strong>
         </div>
       </header>
 
@@ -184,43 +185,48 @@
 
       <section id="overview" class="hero-grid">
         <article class="hero-panel">
+          <div class="advisor-client-tabs advisor-only is-hidden" id="advisorOverviewTabs" aria-label="Advisor overview client selector">
+            <button type="button" class="active" data-overview-client="Rita Wen">Rita</button>
+            <button type="button" data-overview-client="Aidan Huynh">Aidan</button>
+            <button type="button" data-overview-client="Tiana Lee">Tiana</button>
+          </div>
           <div class="panel-heading">
-            <span class="icon-circle">↗</span>
+            <span class="icon-circle" id="overviewIcon">↗</span>
             <div>
-              <p class="eyebrow">This month</p>
-              <h2>You can safely spend $1,240 more.</h2>
+              <p class="eyebrow" id="overviewEyebrow">This month</p>
+              <h2 id="overviewTitle">You can safely spend $1,240 more.</h2>
             </div>
           </div>
-          <p class="hero-copy">Based on your expected income, essential bills, credit card balance, and savings target, FutureView recommends keeping everyday spending below $62 per day for the rest of July.</p>
+          <p class="hero-copy" id="overviewCopy">Based on your expected income, essential bills, credit card balance, and savings target, FutureView recommends keeping everyday spending below $62 per day for the rest of July.</p>
           <div class="meter" aria-label="Safe spending meter">
-            <span style="width: 64%"></span>
+            <span id="overviewMeter" style="width: 64%"></span>
           </div>
           <div class="hero-stats">
             <div>
-              <span>Income expected</span>
-              <strong>$4,850</strong>
+              <span id="statOneLabel">Income expected</span>
+              <strong id="statOneValue">$4,850</strong>
             </div>
             <div>
-              <span>Bills forecast</span>
-              <strong>$2,940</strong>
+              <span id="statTwoLabel">Bills forecast</span>
+              <strong id="statTwoValue">$2,940</strong>
             </div>
             <div>
-              <span>Goal deposit</span>
-              <strong>$450</strong>
+              <span id="statThreeLabel">Goal deposit</span>
+              <strong id="statThreeValue">$450</strong>
             </div>
           </div>
           <div class="client-quick-actions">
-            <button type="button" data-client-action="alert">Set spending alert</button>
-            <button type="button" data-client-action="advisor">Ask advisor</button>
-            <button type="button" data-client-action="plan">Save monthly plan</button>
+            <button type="button" data-client-action="alert" id="quickActionOne">Set spending alert</button>
+            <button type="button" data-client-action="advisor" id="quickActionTwo">Ask advisor</button>
+            <button type="button" data-client-action="plan" id="quickActionThree">Save monthly plan</button>
           </div>
         </article>
 
         <article class="insight-panel">
-          <p class="eyebrow">Forecast insight</p>
-          <h3>Rate-sensitive spending may feel tighter next month.</h3>
-          <p>External forecast signals suggest borrowing costs may remain elevated. FutureView does not show prediction-market trading, but it uses those signals to prepare your budget for higher card interest and mortgage renewal pressure.</p>
-          <button class="text-button" type="button" data-scroll-target="advisor">View preparation plan</button>
+          <p class="eyebrow" id="insightEyebrow">Forecast insight</p>
+          <h3 id="insightTitle">Rate-sensitive spending may feel tighter next month.</h3>
+          <p id="insightCopy">External forecast signals suggest borrowing costs may remain elevated. FutureView does not show prediction-market trading, but it uses those signals to prepare your budget for higher card interest and mortgage renewal pressure.</p>
+          <button class="text-button" type="button" data-scroll-target="advisor" id="insightButton">View preparation plan</button>
         </article>
       </section>
 
@@ -231,7 +237,7 @@
               <p class="eyebrow">Spending forecast</p>
               <h2>FutureView predicts where your money will go.</h2>
             </div>
-            <select aria-label="Forecast period">
+            <select id="forecastPeriod" aria-label="Forecast period">
               <option>Next 30 days</option>
               <option>Next 60 days</option>
               <option>Next 90 days</option>
@@ -290,10 +296,137 @@
         </article>
       </section>
 
+      <section id="marketSignals" class="market-section">
+        <article class="panel wide client-only">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">Market forecast questions</p>
+              <h2>Share what you think may happen, without betting money.</h2>
+              <p class="subtle">FutureView uses these responses as planning signals only. Clients are not trading contracts or placing wagers.</p>
+            </div>
+            <span class="secure-badge">No trading</span>
+          </div>
+          <div class="market-browser">
+            <div class="market-question-menu">
+              <label>
+                <span>Choose a question</span>
+                <select id="clientMarketQuestionSelect" aria-label="Client market question">
+                  <option value="rates">Bank of Canada interest rates</option>
+                  <option value="groceries">Grocery prices next month</option>
+                  <option value="housing">Rent and housing costs</option>
+                  <option value="transport">Student transportation costs</option>
+                  <option value="jobs">Student job market</option>
+                  <option value="gas">Gas prices</option>
+                  <option value="tuition">Tuition and school fees</option>
+                  <option value="cad">Canadian dollar</option>
+                </select>
+              </label>
+              <div class="market-question-list" id="clientMarketQuestionList" aria-label="Question list"></div>
+            </div>
+            <div class="market-question-card featured" id="clientMarketQuestionCard"></div>
+          </div>
+        </article>
+
+        <article class="panel wide advisor-only is-hidden">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">Advisor market signal desk</p>
+              <h2>Isabel can lock her view, see client answers, and create new forecast questions.</h2>
+              <p class="subtle">This is for planning guidance only. It helps Isabel see what clients expect, then turn that into budget and savings advice.</p>
+            </div>
+            <span class="secure-badge">Advisor controls</span>
+          </div>
+          <div class="advisor-market-layout">
+            <div class="advisor-market-card">
+              <label>
+                <span>Review question</span>
+                <select id="advisorMarketQuestionSelect" aria-label="Advisor market question">
+                  <option value="rates">Bank of Canada interest rates</option>
+                  <option value="groceries">Grocery prices next month</option>
+                  <option value="housing">Rent and housing costs</option>
+                  <option value="transport">Student transportation costs</option>
+                  <option value="jobs">Student job market</option>
+                  <option value="gas">Gas prices</option>
+                  <option value="tuition">Tuition and school fees</option>
+                  <option value="cad">Canadian dollar</option>
+                </select>
+              </label>
+              <strong id="advisorMarketTitle">Bank of Canada rate decision</strong>
+              <p id="advisorMarketSummary">Client response split: 42% expect rates up, 40% expect rates to hold, and 18% are unsure.</p>
+              <div class="advisor-market-bars" id="advisorMarketBars"></div>
+              <div class="market-client-picks" id="advisorMarketPicks"></div>
+              <div class="market-lock-row">
+                <select id="advisorRateAnswer" aria-label="Advisor rate answer">
+                  <option>Rates hold</option>
+                  <option>Rates increase</option>
+                  <option>I don't know</option>
+                </select>
+                <button type="button" data-market-advisor-action="lock">Lock Isabel's answer</button>
+              </div>
+            </div>
+            <div class="advisor-market-card">
+              <strong>Client expectation heat map</strong>
+              <div class="market-client-table">
+                <span><b>Question</b><b>Rita</b><b>Aidan</b><b>Tiana</b></span>
+                <span><em>Rates</em><em>Up</em><em>Hold</em><em>I don't know</em></span>
+                <span><em>Groceries</em><em>Higher</em><em>Higher</em><em>Stable</em></span>
+                <span><em>Housing</em><em>Higher</em><em>I don't know</em><em>Higher</em></span>
+                <span><em>Transport</em><em>Stable</em><em>Higher</em><em>I don't know</em></span>
+              </div>
+              <button type="button" class="secondary-action" data-market-advisor-action="export">Save signal summary</button>
+            </div>
+            <div class="advisor-market-card question-builder">
+              <strong>Create a new client question</strong>
+              <label>
+                <span>Question</span>
+                <textarea id="newMarketQuestion" rows="4">Do you expect student transportation costs to rise next month?</textarea>
+              </label>
+              <label>
+                <span>Planning category</span>
+                <select id="newMarketCategory">
+                  <option>Transportation</option>
+                  <option>Housing</option>
+                  <option>Food and groceries</option>
+                  <option>Credit card pressure</option>
+                </select>
+              </label>
+              <button type="button" data-market-advisor-action="push">Push question to clients</button>
+            </div>
+          </div>
+        </article>
+      </section>
+
       <section id="goals" class="section-grid">
         <article class="panel">
-          <p class="eyebrow">Savings goal</p>
-          <h2>Montreal trip fund</h2>
+          <p class="eyebrow" id="goalEyebrow">Savings goal</p>
+          <h2 id="goalTitle">Montreal trip fund</h2>
+          <div class="client-goal-manager client-only" id="clientGoalManager">
+            <label>
+              <span>Saved goals</span>
+              <select id="clientGoalSelect" aria-label="Saved goals"></select>
+            </label>
+            <button type="button" id="showGoalForm">Add goal</button>
+          </div>
+          <form class="add-goal-form client-only is-hidden" id="addGoalForm">
+            <label>
+              <span>Goal name</span>
+              <input id="newGoalName" type="text" value="Textbook fund">
+            </label>
+            <label>
+              <span>Target amount</span>
+              <input id="newGoalTarget" type="number" value="650" min="1">
+            </label>
+            <label>
+              <span>Target date</span>
+              <input id="newGoalDate" type="text" value="September 15">
+            </label>
+            <button type="submit">Create goal</button>
+          </form>
+          <div class="advisor-client-tabs advisor-only is-hidden" id="advisorGoalTabs" aria-label="Client goal review">
+            <button type="button" class="active" data-goal-client="Rita Wen">Rita</button>
+            <button type="button" data-goal-client="Aidan Huynh">Aidan</button>
+            <button type="button" data-goal-client="Tiana Lee">Tiana</button>
+          </div>
           <div class="goal-ring" aria-label="Goal progress">
             <span id="goalPercent">72%</span>
           </div>
@@ -316,13 +449,21 @@
               <span>Keep recreation spending under $140.</span>
             </button>
           </div>
+          <div class="advisor-suggestion-box advisor-only is-hidden" id="advisorSuggestionBox">
+            <label for="advisorSuggestionText">Isabel's suggestion for this client</label>
+            <textarea id="advisorSuggestionText" rows="4">Hi Rita, FutureView shows you are still on track for your Montreal trip. I recommend keeping everyday spending below $62 per day and moving $100 into savings this week.</textarea>
+            <div class="advisor-suggestion-actions">
+              <button type="button" id="sendAdvisorSuggestion">Send suggestion</button>
+              <button type="button" class="secondary-action" id="saveAdvisorNote">Save advisor note</button>
+            </div>
+          </div>
         </article>
 
         <article class="panel wide">
           <div class="panel-title">
             <div>
-              <p class="eyebrow">Goal plan</p>
-              <h2>Your next best actions are ranked by impact.</h2>
+              <p class="eyebrow" id="goalPlanEyebrow">Goal plan</p>
+              <h2 id="goalPlanTitle">Your next best actions are ranked by impact.</h2>
             </div>
           </div>
           <div class="action-list">
@@ -351,11 +492,21 @@
               <span class="impact">Low</span>
             </div>
           </div>
+          <div class="advisor-decision-actions advisor-only is-hidden" id="advisorDecisionActions">
+            <label for="advisorQuickNote">Isabel's private review note</label>
+            <textarea id="advisorQuickNote" rows="5" placeholder="Add internal notes about the selected client, risk signal, follow-up timing, or next conversation..."></textarea>
+            <div class="advisor-note-buttons">
+              <button type="button" data-advisor-decision="note">Save note</button>
+              <button type="button" data-advisor-decision="schedule">Book follow-up call</button>
+              <button type="button" class="secondary-action" data-advisor-decision="send">Draft client message</button>
+            </div>
+            <div class="advisor-note-categories" id="advisorNoteCategories" aria-label="Client note categories"></div>
+          </div>
         </article>
       </section>
 
       <section id="accounts" class="accounts-section">
-        <article class="panel wide">
+        <article class="panel wide client-only">
           <p class="eyebrow">All CIBC accounts</p>
           <h2>One view across chequing, savings, credit, and investments.</h2>
           <div class="account-table">
@@ -406,6 +557,82 @@
               <div class="account-total">
                 <span>Total CAD</span>
                 <strong>$8,920</strong>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="panel wide advisor-only is-hidden">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">Client account signals</p>
+              <h2>Isabel can compare account health across Rita, Aidan, and Tiana.</h2>
+            </div>
+            <span class="secure-badge">Advisor view</span>
+          </div>
+          <div class="advisor-account-grid">
+            <div class="advisor-account-card">
+              <div class="advisor-account-top">
+                <div>
+                  <strong>Rita Wen</strong>
+                  <span>Goal pressure: low</span>
+                </div>
+                <b class="risk-pill on-track">On track</b>
+              </div>
+              <div class="advisor-account-metrics">
+                <span>Cash buffer <strong>22 days</strong></span>
+                <span>Card balance <strong>$1,140</strong></span>
+                <span>TFSA alignment <strong>Balanced</strong></span>
+              </div>
+              <p>Dining and Uber spending are reducing Rita's cushion, but her Montreal trip fund is still on schedule.</p>
+              <textarea class="advisor-card-note" rows="3" data-account-note="Rita Wen" placeholder="Add Rita account note..."></textarea>
+              <div class="advisor-card-actions">
+                <button type="button" data-advisor-account-action="rita-limit">Set $62 daily guardrail</button>
+                <button type="button" class="secondary-action" data-advisor-account-action="rita-review">Review account details</button>
+                <button type="button" class="secondary-action" data-advisor-account-action="rita-save">Save note</button>
+              </div>
+            </div>
+
+            <div class="advisor-account-card warning">
+              <div class="advisor-account-top">
+                <div>
+                  <strong>Aidan Huynh</strong>
+                  <span>Credit pressure: high</span>
+                </div>
+                <b class="risk-pill high">Needs review</b>
+              </div>
+              <div class="advisor-account-metrics">
+                <span>Cash buffer <strong>9 days</strong></span>
+                <span>Card balance <strong>$2,380</strong></span>
+                <span>Flexible spend <strong>31% high</strong></span>
+              </div>
+              <p>Aidan's non-essential spending is rising faster than income, so FutureView recommends outreach before the card cycle closes.</p>
+              <textarea class="advisor-card-note" rows="3" data-account-note="Aidan Huynh" placeholder="Add Aidan account note..."></textarea>
+              <div class="advisor-card-actions">
+                <button type="button" data-advisor-account-action="aidan-call">Draft budget call note</button>
+                <button type="button" class="secondary-action" data-advisor-account-action="aidan-limit">Set spending cap</button>
+                <button type="button" class="secondary-action" data-advisor-account-action="aidan-save">Save note</button>
+              </div>
+            </div>
+
+            <div class="advisor-account-card success">
+              <div class="advisor-account-top">
+                <div>
+                  <strong>Tiana Lee</strong>
+                  <span>Savings stability: strong</span>
+                </div>
+                <b class="risk-pill on-track">Stable</b>
+              </div>
+              <div class="advisor-account-metrics">
+                <span>Cash buffer <strong>31 days</strong></span>
+                <span>Card balance <strong>$420</strong></span>
+                <span>Emergency fund <strong>86%</strong></span>
+              </div>
+              <p>Tiana is consistently saving and does not need urgent intervention. Isabel can send a positive progress check-in.</p>
+              <textarea class="advisor-card-note" rows="3" data-account-note="Tiana Lee" placeholder="Add Tiana account note..."></textarea>
+              <div class="advisor-card-actions">
+                <button type="button" data-advisor-account-action="tiana-checkin">Send progress check-in</button>
+                <button type="button" class="secondary-action" data-advisor-account-action="tiana-review">Review investments later</button>
+                <button type="button" class="secondary-action" data-advisor-account-action="tiana-save">Save note</button>
               </div>
             </div>
           </div>
@@ -542,6 +769,6 @@
     </div>
   </div>
   <div class="toast is-hidden" id="toast" role="status" aria-live="polite"></div>
-  <script src="./app.js?v=goal-lock5"></script>
+  <script src="./app.js?v=final-polish23"></script>
 </body>
 </html>

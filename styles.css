@@ -947,6 +947,81 @@ select {
   margin-top: 1rem;
 }
 
+.advisor-client-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin: 0.8rem 0 0.4rem;
+  padding: 0.35rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbf8f9;
+}
+
+.advisor-client-tabs button {
+  min-height: 38px;
+  padding: 0.5rem;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+}
+
+.advisor-client-tabs button.active,
+.advisor-client-tabs button:hover {
+  background: var(--cibc-red);
+  color: white;
+}
+
+.hero-panel > .advisor-client-tabs {
+  margin: 0 0 1rem;
+}
+
+.client-goal-manager {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.6rem;
+  align-items: end;
+  margin: 0.8rem 0 0.4rem;
+}
+
+.client-goal-manager label,
+.add-goal-form label {
+  display: grid;
+  gap: 0.35rem;
+  color: #3c3338;
+  font-weight: 850;
+}
+
+.client-goal-manager select,
+.add-goal-form input {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 0.75rem;
+  background: white;
+  color: var(--ink);
+  font: inherit;
+}
+
+.client-goal-manager button,
+.add-goal-form button {
+  min-height: 42px;
+  padding: 0.65rem 0.85rem;
+}
+
+.add-goal-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(120px, 0.8fr) minmax(140px, 0.8fr) auto;
+  gap: 0.6rem;
+  align-items: end;
+  margin: 0.7rem 0 0.5rem;
+  padding: 0.8rem;
+  border: 1px solid #efc7d4;
+  border-radius: 8px;
+  background: #fff7fa;
+}
+
 .goal-suggestion {
   display: grid;
   gap: 0.25rem;
@@ -966,7 +1041,8 @@ select {
 }
 
 .goal-suggestion strong,
-.goal-suggestion span {
+.goal-suggestion span,
+.goal-suggestion em {
   display: block;
 }
 
@@ -974,6 +1050,144 @@ select {
   color: var(--muted);
   font-size: 0.88rem;
   line-height: 1.35;
+}
+
+.goal-suggestion em {
+  width: fit-content;
+  margin-top: 0.25rem;
+  padding: 0.24rem 0.5rem;
+  border-radius: 999px;
+  background: var(--mint);
+  color: #107052;
+  font-style: normal;
+  font-size: 0.76rem;
+  font-weight: 850;
+}
+
+.advisor-suggestion-box {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  padding: 0.9rem;
+  border: 1px solid #efc7d4;
+  border-radius: 8px;
+  background: #fff7fa;
+}
+
+.advisor-suggestion-box label {
+  color: var(--cibc-deep);
+  font-weight: 850;
+}
+
+.advisor-suggestion-box textarea {
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.75rem;
+  color: var(--ink);
+  font: inherit;
+  line-height: 1.45;
+}
+
+.advisor-suggestion-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.55rem;
+}
+
+.advisor-suggestion-actions .secondary-action {
+  border: 1px solid #efb9c8;
+  background: white;
+  color: var(--cibc-red);
+}
+
+.advisor-decision-actions {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  padding: 0.95rem;
+  padding-top: 1rem;
+  border: 1px solid #efc7d4;
+  border-radius: 8px;
+  background: #fff7fa;
+}
+
+.advisor-decision-actions label {
+  color: var(--cibc-deep);
+  font-weight: 850;
+}
+
+.advisor-decision-actions textarea {
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.75rem;
+  color: var(--ink);
+  background: white;
+  font: inherit;
+  line-height: 1.45;
+}
+
+.advisor-note-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.advisor-note-buttons button {
+  min-height: 42px;
+  padding: 0.65rem;
+}
+
+.advisor-note-buttons .secondary-action {
+  border: 1px solid #efb9c8;
+  background: white;
+  color: var(--cibc-red);
+}
+
+.advisor-note-categories {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-top: 0.25rem;
+}
+
+.advisor-note-categories button {
+  display: grid;
+  gap: 0.24rem;
+  min-height: 78px;
+  padding: 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  color: var(--ink);
+  text-align: left;
+}
+
+.advisor-note-categories button.active,
+.advisor-note-categories button:hover {
+  border-color: #efb9c8;
+  box-shadow: inset 4px 0 0 var(--cibc-red);
+}
+
+.advisor-note-categories strong,
+.advisor-note-categories span {
+  display: block;
+}
+
+.advisor-note-categories strong {
+  color: var(--cibc-deep);
+  font-size: 0.9rem;
+}
+
+.advisor-note-categories span {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.3;
 }
 
 .action-row {
@@ -1020,6 +1234,16 @@ select {
   font-weight: 850;
 }
 
+.impact.medium {
+  background: #fff4d6;
+  color: #86620a;
+}
+
+.impact.low {
+  background: var(--soft-red);
+  color: var(--cibc-red);
+}
+
 .action-detail-grid {
   display: grid;
   gap: 0.7rem;
@@ -1063,6 +1287,128 @@ select {
 
 .accounts-section {
   margin-bottom: 1rem;
+}
+
+.advisor-account-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.advisor-account-card {
+  display: grid;
+  gap: 0.8rem;
+  padding: 0.95rem;
+  border: 1px solid var(--line);
+  border-top: 5px solid #168579;
+  border-radius: 8px;
+  background: white;
+}
+
+.advisor-account-card.warning {
+  border-top-color: var(--cibc-red);
+  background: #fff8fa;
+}
+
+.advisor-account-card.success {
+  border-top-color: #137252;
+}
+
+.advisor-account-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.advisor-account-top strong,
+.advisor-account-top span {
+  display: block;
+}
+
+.advisor-account-top strong {
+  font-size: 1.12rem;
+}
+
+.advisor-account-top span {
+  margin-top: 0.18rem;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.risk-pill {
+  flex: 0 0 auto;
+  padding: 0.28rem 0.5rem;
+  border-radius: 999px;
+  background: var(--mint);
+  color: #107052;
+  font-size: 0.74rem;
+  white-space: nowrap;
+}
+
+.risk-pill.high {
+  background: var(--soft-red);
+  color: var(--cibc-red);
+}
+
+.advisor-account-metrics {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.advisor-account-metrics span {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.55rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fbf8f9;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.advisor-account-metrics strong {
+  color: var(--ink);
+}
+
+.advisor-account-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.4;
+  font-size: 0.92rem;
+}
+
+.advisor-card-note {
+  width: 100%;
+  min-height: 74px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.65rem;
+  color: var(--ink);
+  background: white;
+  font: inherit;
+  line-height: 1.35;
+}
+
+.advisor-card-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+}
+
+.advisor-card-actions button {
+  min-height: 38px;
+  padding: 0.55rem 0.65rem;
+  font-size: 0.86rem;
+}
+
+.advisor-card-actions .secondary-action {
+  border: 1px solid #efb9c8;
+  background: white;
+  color: var(--cibc-red);
 }
 
 .table-row {
@@ -1304,6 +1650,327 @@ select {
   background: white;
   color: var(--cibc-red);
   border: 1px solid #efb9c8;
+}
+
+.market-section {
+  margin-bottom: 1rem;
+}
+
+.market-browser,
+.advisor-market-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.38fr) minmax(0, 1fr);
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.advisor-market-layout {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.market-question-menu {
+  display: grid;
+  align-content: start;
+  gap: 0.7rem;
+}
+
+.market-question-menu label,
+.advisor-market-card label {
+  display: grid;
+  gap: 0.35rem;
+  color: #3c3338;
+  font-weight: 850;
+}
+
+.market-question-list {
+  display: grid;
+  max-height: 390px;
+  overflow: auto;
+  gap: 0.45rem;
+  padding-right: 0.25rem;
+}
+
+.market-question-list button {
+  display: grid;
+  gap: 0.24rem;
+  padding: 0.58rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  color: var(--ink);
+  text-align: left;
+}
+
+.market-question-list button.active,
+.market-question-list button:hover {
+  border-color: #efb9c8;
+  box-shadow: inset 4px 0 0 var(--cibc-red);
+}
+
+.market-question-list strong,
+.market-question-list span {
+  display: block;
+}
+
+.market-question-list span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.3;
+}
+
+.market-question-list strong {
+  font-size: 0.9rem;
+}
+
+.market-question-card,
+.advisor-market-card {
+  display: grid;
+  align-content: start;
+  gap: 0.8rem;
+  padding: 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.market-question-card strong,
+.advisor-market-card strong {
+  line-height: 1.25;
+}
+
+.market-question-card p,
+.advisor-market-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.4;
+  font-size: 0.92rem;
+}
+
+.market-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.market-options button,
+.market-lock-row button,
+.question-builder button {
+  min-height: 40px;
+  padding: 0.62rem 0.7rem;
+  font-size: 0.86rem;
+}
+
+.market-options button.active {
+  background: var(--cibc-deep);
+}
+
+.market-result,
+.advisor-market-bars {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.market-result span,
+.advisor-market-bars span {
+  display: grid;
+  gap: 0.28rem;
+}
+
+.market-result b,
+.advisor-market-bars b {
+  display: block;
+  height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--cibc-red), #e06a2e);
+}
+
+.market-result em,
+.advisor-market-bars em {
+  color: var(--muted);
+  font-style: normal;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.market-trend-card {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 0.45rem;
+  padding: 0.85rem;
+  border: 1px solid #eadde2;
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 92% 12%, rgba(200, 16, 46, 0.08), transparent 28%),
+    linear-gradient(180deg, #fff, #fbf8f9);
+}
+
+.market-trend-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.8rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.market-trend-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.market-trend-legend i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.market-trend-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: flex-start;
+}
+
+.market-trend-head strong,
+.market-trend-head span {
+  display: block;
+}
+
+.market-trend-head span {
+  margin-top: 0.18rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.market-trend-head b {
+  padding: 0.28rem 0.48rem;
+  border-radius: 999px;
+  background: var(--mint);
+  color: #107052;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.market-line-shell {
+  border: 1px solid #efe5e9;
+  border-radius: 8px;
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.market-line-shell svg {
+  width: 100%;
+  height: 260px;
+  display: block;
+  background: linear-gradient(180deg, #ffffff, #fffafa);
+}
+
+.trend-plot {
+  fill: rgba(255, 255, 255, 0.8);
+}
+
+.trend-grid {
+  stroke: #eadde2;
+  stroke-width: 0.5;
+  stroke-dasharray: 1 4;
+}
+
+.trend-vertical {
+  opacity: 0.75;
+}
+
+.trend-axis,
+.trend-month {
+  fill: #8b858c;
+  font-size: 6.5px;
+  font-weight: 750;
+}
+
+.trend-event-dot {
+  fill: #d9d1d7;
+}
+
+.market-trend-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--muted);
+}
+
+.market-trend-labels strong {
+  color: var(--cibc-red);
+}
+
+.market-client-picks {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.market-client-picks span {
+  padding: 0.5rem;
+  border-radius: 7px;
+  background: #fbf8f9;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.market-lock-row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: 0.5rem;
+}
+
+.market-client-table {
+  display: grid;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.market-client-table span {
+  display: grid;
+  grid-template-columns: 1.2fr repeat(3, 0.75fr);
+  gap: 0.4rem;
+  padding: 0.55rem;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+
+.market-client-table span:first-child {
+  background: #fbf8f9;
+}
+
+.market-client-table span:last-child {
+  border-bottom: 0;
+}
+
+.market-client-table b,
+.market-client-table em {
+  color: var(--muted);
+  font-style: normal;
+  font-size: 0.8rem;
+}
+
+.question-builder label {
+  display: grid;
+  gap: 0.35rem;
+  color: #3c3338;
+  font-weight: 850;
+}
+
+.question-builder textarea {
+  width: 100%;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.7rem;
+  color: var(--ink);
+  font: inherit;
+  line-height: 1.4;
 }
 
 .toast {
